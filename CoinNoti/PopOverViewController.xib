@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PopOverViewController" customModule="CoinNoti" customModuleProvider="target">
+            <connections>
+                <outlet property="btcBtn" destination="ngI-bf-X1j" id="osb-Hi-LiS"/>
+                <outlet property="dashBtn" destination="mpx-H8-9sz" id="tdt-dS-8d7"/>
+                <outlet property="etcBtn" destination="A7s-0K-Ldh" id="uot-A7-Ix2"/>
+                <outlet property="ethBtn" destination="FHN-sf-BHL" id="XFg-VM-ZsR"/>
+                <outlet property="intervalBtn" destination="dEH-kj-9ke" id="0vB-VR-70y"/>
+                <outlet property="ltcBtn" destination="7NN-pM-ssV" id="AkB-Gs-dT1"/>
+                <outlet property="quitBtn" destination="Q1o-Ac-w1B" id="TWu-kb-oI0"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="256" height="273"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-kj-9ke">
+                    <rect key="frame" x="53" y="222" width="155" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="7a9-5Y-dFe"/>
+                        <constraint firstAttribute="height" constant="30" id="ici-aW-TRO"/>
+                    </constraints>
+                    <popUpButtonCell key="cell" type="push" title="Update Time" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="phu-ie-p8n" id="Si4-Gi-FBF">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="Ayj-ov-hvL">
+                            <items>
+                                <menuItem title="Update Time" state="on" id="phu-ie-p8n"/>
+                                <menuItem title="Item 2" id="DPL-lP-pKj"/>
+                                <menuItem title="Item 3" id="jEt-aN-OTQ"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="updateIntervalTimeWithSender:" target="-1" id="zQZ-do-WT1"/>
+                    </connections>
+                </popUpButton>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="ngI-bf-X1j">
+                    <rect key="frame" x="48" y="195" width="164" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="w8H-sO-Ppw"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="BITCOIN(BTC)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="JwU-7F-ty7">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCoinCheckStateWithSender:" target="-1" id="vCd-zW-Nwu"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="A7s-0K-Ldh">
+                    <rect key="frame" x="48" y="59" width="190" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="186" id="nNR-A7-cJ6"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="ETHEREUM CLASSIC(ETC)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="H8V-df-qQM">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCoinCheckStateWithSender:" target="-1" id="2DR-IC-Ief"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="FHN-sf-BHL">
+                    <rect key="frame" x="48" y="161" width="164" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="8ZJ-nD-mhp"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="ETHEREUM(ETH)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="T2h-u4-h85">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCoinCheckStateWithSender:" target="-1" id="D7S-ak-kmr"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="mpx-H8-9sz">
+                    <rect key="frame" x="48" y="127" width="164" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="HBD-2Y-pgx"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="DASH(DASH)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Mfp-Ir-Ltd">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCoinCheckStateWithSender:" target="-1" id="NNB-kV-dkv"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="7NN-pM-ssV">
+                    <rect key="frame" x="48" y="93" width="164" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="Vj8-Gx-Xev"/>
+                    </constraints>
+                    <buttonCell key="cell" type="check" title="LITECOIN(LTC)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="m1c-FJ-mv2">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateCoinCheckStateWithSender:" target="-1" id="kNP-w0-Gg5"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q1o-Ac-w1B">
+                    <rect key="frame" x="90" y="5" width="81" height="32"/>
+                    <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Kln-U7-nFU">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="quitCoinNotiWithSender:" target="-1" id="WTB-Tm-AMS"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="A7s-0K-Ldh" secondAttribute="trailing" constant="20" symbolic="YES" id="6ix-DA-fhV"/>
+                <constraint firstItem="A7s-0K-Ldh" firstAttribute="centerX" secondItem="dEH-kj-9ke" secondAttribute="centerX" constant="13" id="Dv0-vo-7tH"/>
+                <constraint firstItem="7NN-pM-ssV" firstAttribute="centerX" secondItem="dEH-kj-9ke" secondAttribute="centerX" id="H20-Ps-krY"/>
+                <constraint firstItem="7NN-pM-ssV" firstAttribute="top" secondItem="mpx-H8-9sz" secondAttribute="bottom" constant="20" id="KIk-CD-cJI"/>
+                <constraint firstItem="A7s-0K-Ldh" firstAttribute="top" secondItem="7NN-pM-ssV" secondAttribute="bottom" constant="20" id="QNa-ol-4Ia"/>
+                <constraint firstItem="mpx-H8-9sz" firstAttribute="top" secondItem="FHN-sf-BHL" secondAttribute="bottom" constant="20" id="TER-U8-qVk"/>
+                <constraint firstItem="7NN-pM-ssV" firstAttribute="centerX" secondItem="Q1o-Ac-w1B" secondAttribute="centerX" id="bUY-ma-toc"/>
+                <constraint firstItem="FHN-sf-BHL" firstAttribute="centerX" secondItem="dEH-kj-9ke" secondAttribute="centerX" id="cGf-M2-c6B"/>
+                <constraint firstItem="Q1o-Ac-w1B" firstAttribute="top" secondItem="A7s-0K-Ldh" secondAttribute="bottom" constant="28" id="d1X-U0-4N9"/>
+                <constraint firstItem="dEH-kj-9ke" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="18" id="fv7-ac-xaY"/>
+                <constraint firstItem="ngI-bf-X1j" firstAttribute="top" secondItem="dEH-kj-9ke" secondAttribute="bottom" constant="14" id="nkI-Sf-jDn"/>
+                <constraint firstItem="mpx-H8-9sz" firstAttribute="centerX" secondItem="dEH-kj-9ke" secondAttribute="centerX" id="nkt-9s-dro"/>
+                <constraint firstItem="ngI-bf-X1j" firstAttribute="centerX" secondItem="dEH-kj-9ke" secondAttribute="centerX" id="tK4-dN-IV9"/>
+                <constraint firstItem="FHN-sf-BHL" firstAttribute="top" secondItem="ngI-bf-X1j" secondAttribute="bottom" constant="20" id="wRk-N0-s0K"/>
+            </constraints>
+            <point key="canvasLocation" x="159" y="7.5"/>
+        </customView>
+    </objects>
+</document>
