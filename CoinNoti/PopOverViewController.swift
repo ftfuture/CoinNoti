@@ -10,27 +10,43 @@ import Cocoa
 
 class PopOverViewController: NSViewController {
     let appDelegate = NSApplication.shared().delegate as! AppDelegate
+    @IBOutlet var sourceBtn: NSPopUpButton!
     @IBOutlet var intervalBtn: NSPopUpButton!
     @IBOutlet var btcBtn: NSButton!
     @IBOutlet var ethBtn: NSButton!
     @IBOutlet var dashBtn: NSButton!
     @IBOutlet var ltcBtn: NSButton!
+    @IBOutlet var xrpBtn: NSButton!
     @IBOutlet var etcBtn: NSButton!
     @IBOutlet var quitBtn: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sourceBtn.removeAllItems()
+        sourceBtn.addItem(withTitle: "Bithumb")
+        sourceBtn.addItem(withTitle: "Coinone")
         intervalBtn.removeAllItems()
         intervalBtn.addItem(withTitle: "5 second")
         intervalBtn.addItem(withTitle: "10 second")
         intervalBtn.addItem(withTitle: "15 second")
         
+        sourceBtn.selectItem(at: UserDefaults.standard.integer(forKey: "COINNOTISOURCE"))
         intervalBtn.selectItem(at: Int(UserDefaults.standard.double(forKey: "COINNOTIINTERVAL"))/5-1)
         btcBtn.state = UserDefaults.standard.integer(forKey: "COINNOTIBTCSTATE")
         ethBtn.state = UserDefaults.standard.integer(forKey: "COINNOTIETHSTATE")
         dashBtn.state = UserDefaults.standard.integer(forKey: "COINNOTIDASHSTATE")
         ltcBtn.state = UserDefaults.standard.integer(forKey: "COINNOTILTCSTATE")
+        xrpBtn.state = UserDefaults.standard.integer(forKey: "COINNOTIXRPSTATE")
         etcBtn.state = UserDefaults.standard.integer(forKey: "COINNOTIETCSTATE")
+    }
+    
+    @IBAction func updateSource(sender: NSButton) {
+        print("updateSource")
+        if(sender != sourceBtn){
+            return
+        }
+        
+        UserDefaults.standard.set(sourceBtn.indexOfSelectedItem, forKey:"COINNOTISOURCE")
     }
     
     @IBAction func updateIntervalTime(sender: NSButton) {
@@ -71,6 +87,9 @@ class PopOverViewController: NSViewController {
         case etcBtn: print("etcBtn")
         UserDefaults.standard.set(etcBtn.state, forKey:"COINNOTIETCSTATE")
         break
+        case xrpBtn: print("xrpBtn")
+        UserDefaults.standard.set(xrpBtn.state, forKey:"COINNOTIXRPSTATE")
+        break
         default:
             break
         }
@@ -79,5 +98,5 @@ class PopOverViewController: NSViewController {
     @IBAction func quitCoinNoti(sender: NSButton) {
         NSApplication.shared().terminate(sender)
     }
-    
+
 }

@@ -17,12 +17,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         popover.contentViewController = PopOverViewController(nibName: "PopOverViewController", bundle: nil)
         statusItem.action = #selector(AppDelegate.togglePopover(_:))
-        if(UserDefaults.standard.integer(forKey:"COINNOTIINTERVAL")==0){
-            UserDefaults.standard.set(5, forKey:"COINNOTIINTERVAL")
-            UserDefaults.standard.set(NSOnState, forKey: "COINNOTIETHSTATE")
-        }
-        timer = Timer.scheduledTimer(timeInterval: TimeInterval(UserDefaults.standard.integer(forKey:"COINNOTIINTERVAL")), target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
+        
+        var timerInterval = UserDefaults.standard.integer(forKey:"COINNOTIINTERVAL")
+        if(timerInterval < 5){ timerInterval = 5 }
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerInterval), target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
     }
+    
     func changeTimeInterval(_ sender: AnyObject?) {
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(UserDefaults.standard.integer(forKey:"COINNOTIINTERVAL")), target: self, selector: #selector(self.update), userInfo: nil, repeats: true);
@@ -30,14 +30,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func update() {
-        let price = coinData
+        var price = String()
+        var sourceStr = String()
+        let sourceType = UserDefaults.standard.integer(forKey: "COINNOTISOURCE")
+        
+        if(sourceType == 0) { //Bithumb
+            sourceStr = "Bithumb"
+            price = coinDataBithumb
+        } else { //Coinone
+            sourceStr = "Coinone"
+            price = coinDataCoinone
+        }
         let titleText = " \(price)"
         statusItem.title = titleText
         
-        print("Update - ",NSDate(), " ", price)
+        print("Update - ", sourceStr," ",NSDate(), " ", price)
     }
     
-    var coinData: String {
+    var coinDataBithumb: String {
         // https://www.bithumb.com/u1/US127
         // https://api.bithumb.com/public/ticker/{currency} - ALL
         /*
@@ -54,6 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
          sell_price	거래 대기건 최소 판매가
          date	현재 시간 Timestamp
          */
+        
         var coinStr = ""
         let data = try! String(contentsOf:URL(string:"https://api.bithumb.com/public/ticker/ALL")!, encoding:.utf8).parseJSONString as! NSDictionary?
         
@@ -91,9 +102,49 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             coinStr += " ETC:"+String(etcDict["sell_price"] as! String)
         }
+        if(UserDefaults.standard.integer(forKey: "COINNOTIXRPSTATE") == NSOnState){
+            guard let xrpDict = dictData["XRP"] as! NSDictionary? else {
+                return ""
+            }
+            coinStr += " XRP:"+String(xrpDict["sell_price"] as! String)
+        }
         
         return coinStr as String!
+    }
+    
+    var coinDataCoinone: String {
+        // http://doc.coinone.co.kr/#api-Public-Ticker
+        // https://api.coinone.co.kr/ticker/?currency=all&format=json
         
+        var coinStr = ""
+        let data = try! String(contentsOf:URL(string:"https://api.coinone.co.kr/ticker/?currency=all&format=json")!, encoding:.utf8).parseJSONString as! NSDictionary?
+        
+        if(UserDefaults.standard.integer(forKey: "COINNOTIBTCSTATE") == NSOnState){
+            guard let btcDict = data?["btc"] as! NSDictionary? else {
+                return ""
+            }
+            coinStr += "BTC:"+String(btcDict["last"] as! String)
+        }
+        if(UserDefaults.standard.integer(forKey: "COINNOTIETHSTATE") == NSOnState){
+            guard let ethDict = data?["eth"] as! NSDictionary? else {
+                return ""
+            }
+            coinStr += " ETH:"+String(ethDict["last"] as! String)
+        }
+        if(UserDefaults.standard.integer(forKey: "COINNOTIETCSTATE") == NSOnState){
+            guard let etcDict = data?["etc"] as! NSDictionary? else {
+                return ""
+            }
+            coinStr += " ETC:"+String(etcDict["last"] as! String)
+        }
+        if(UserDefaults.standard.integer(forKey: "COINNOTIXRPSTATE") == NSOnState){
+            guard let xrpDict = data?["xrp"] as! NSDictionary? else {
+                return ""
+            }
+            coinStr += " XRP:"+String(xrpDict["last"] as! String)
+        }
+        
+        return coinStr as String!
     }
     
     func showPopover(_ sender: AnyObject?){
@@ -114,6 +165,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 }
+
 
 extension String
 {

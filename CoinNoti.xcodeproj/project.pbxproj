@@ -12,6 +12,7 @@
 		04759D1B1EDDFF2D008124FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04759D191EDDFF2D008124FB /* Main.storyboard */; };
 		04759D241EDEA1AC008124FB /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04759D221EDEA1AC008124FB /* PopOverViewController.swift */; };
 		04759D251EDEA1AC008124FB /* PopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04759D231EDEA1AC008124FB /* PopOverViewController.xib */; };
+		04EFEABD1EE1B08E00807B11 /* CoinNoti.app.zip in Resources */ = {isa = PBXBuildFile; fileRef = 04EFEABC1EE1B08E00807B11 /* CoinNoti.app.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		04759D1C1EDDFF2D008124FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04759D221EDEA1AC008124FB /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		04759D231EDEA1AC008124FB /* PopOverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOverViewController.xib; sourceTree = "<group>"; };
+		04EFEABC1EE1B08E00807B11 /* CoinNoti.app.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = CoinNoti.app.zip; path = "CoinNoti 2017-06-02 23-39-56/CoinNoti.app.zip"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		04759D071EDDFF2D008124FB = {
 			isa = PBXGroup;
 			children = (
+				04EFEABC1EE1B08E00807B11 /* CoinNoti.app.zip */,
 				04759D121EDDFF2D008124FB /* CoinNoti */,
 				04759D111EDDFF2D008124FB /* Products */,
 			);
@@ -126,6 +129,7 @@
 				04759D251EDEA1AC008124FB /* PopOverViewController.xib in Resources */,
 				04759D181EDDFF2D008124FB /* Assets.xcassets in Resources */,
 				04759D1B1EDDFF2D008124FB /* Main.storyboard in Resources */,
+				04EFEABD1EE1B08E00807B11 /* CoinNoti.app.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +296,7 @@
 				04759D211EDDFF2D008124FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
