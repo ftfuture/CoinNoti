@@ -25,6 +25,7 @@ class PopOverViewController: NSViewController {
         sourceBtn.removeAllItems()
         sourceBtn.addItem(withTitle: "Bithumb")
         sourceBtn.addItem(withTitle: "Coinone")
+        sourceBtn.addItem(withTitle: "Korbit")
         intervalBtn.removeAllItems()
         intervalBtn.addItem(withTitle: "5 second")
         intervalBtn.addItem(withTitle: "10 second")

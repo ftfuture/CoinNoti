@@ -37,9 +37,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if(sourceType == 0) { //Bithumb
             sourceStr = "Bithumb"
             price = coinDataBithumb
-        } else { //Coinone
+        } else if(sourceType == 1){ //Coinone
             sourceStr = "Coinone"
             price = coinDataCoinone
+        } else { //Korbit
+            sourceStr = "Korbit"
+            price = coinDataKorbit
         }
         let titleText = " \(price)"
         statusItem.title = titleText
@@ -142,6 +145,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 return ""
             }
             coinStr += " XRP:"+String(xrpDict["last"] as! String)
+        }
+        
+        return coinStr as String!
+    }
+    
+    var coinDataKorbit: String {
+        //https://apidocs.korbit.co.kr/#detailed-ticker
+        //https://api.korbit.co.kr/v1/ticker?currency_pair=eth_krw
+        
+        var coinStr = ""
+        
+        if(UserDefaults.standard.integer(forKey: "COINNOTIBTCSTATE") == NSOnState){
+            let data = try! String(contentsOf:URL(string:"https://api.korbit.co.kr/v1/ticker?currency_pair=btc_krw")!, encoding:.utf8).parseJSONString as! NSDictionary?
+            coinStr += "BTC:"+String(data?["last"] as! String)
+        }
+        if(UserDefaults.standard.integer(forKey: "COINNOTIETHSTATE") == NSOnState){
+            let data = try! String(contentsOf:URL(string:"https://api.korbit.co.kr/v1/ticker?currency_pair=eth_krw")!, encoding:.utf8).parseJSONString as! NSDictionary?
+            coinStr += "ETH:"+String(data?["last"] as! String)
         }
         
         return coinStr as String!
